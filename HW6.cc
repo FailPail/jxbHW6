@@ -9,19 +9,15 @@
 
 #include <cdk.h>
 
-#define WIDTH = 3
-#define HEIGHT = 3
-#define BOX_WIDTH = 15
-#define NAME = "HW6 Matrix"
+#define WIDTH 3
+#define HEIGHT 5
+#define BOX_WIDTH 15
+#define NAME "HW6 Matrix"
 
 int main(){
 
 
-  int width = 3;
-  int height = 5;
-  int box_width = 15;
-  
-  WINDOW *window;
+    WINDOW *window;
   CDKSCREEN *screen;
   CDKMATRIX *matrix;
 
@@ -36,7 +32,7 @@ int main(){
 
   initCDKColor();
 
-  matrix = newCDKMatrix(screen, CENTER, CENTER, WIDTH, HEIGHT, WIDTH, HEIGHT, "Matrix", (char**) colTitles,(char**) rowTitles, widths, types, 1,1, ' ', ROW, true, true, false);
+  matrix = newCDKMatrix(screen, CENTER, CENTER, WIDTH, HEIGHT, WIDTH, HEIGHT, NAME, (char**) colTitles,(char**) rowTitles, widths, types, 1,1, ' ', ROW, true, true, false);
 
   if(matrix == NULL){
 
