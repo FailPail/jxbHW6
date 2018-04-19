@@ -66,7 +66,7 @@ backup:	clean
 	@echo
 	@echo Writing Backup file to: $(MKBKUPNAME)
 	@echo
-	@-tar zcfv $(MKBKUPNAME) ../$(CURDIRNAME)
+	@-tar zcfv $(MKBKUPNAME) ../$(CURDIRNAME) --exclude=.git
 	@chmod 600 $(MKBKUPNAME)
 	@echo
 	@echo Done!
