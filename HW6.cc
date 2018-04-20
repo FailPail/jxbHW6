@@ -11,7 +11,7 @@
 #include <cdk.h>
 #include <stdlib.h>
 #include <string>
-#include <curses.h>
+#include <iostream>
 
 
 
@@ -19,8 +19,8 @@
 //WIDTH for width of matrix
 //HEIGHT for height of matrix
 //NAME fo the name of the matrix
-#define WIDTH 5
-#define HEIGHT 3
+#define WIDTH 3
+#define HEIGHT 5
 #define BOX_WIDTH 20
 #define NAME "HW6 Matrix"
 
@@ -60,10 +60,8 @@ int main(){
 
 
   //titles for the rows and columns
-  //Weird bit, CDK seems to swap width and height, so rowtitles, is the number of columns
-  //and row titles is the number of rows
-  const char * rowTitles[HEIGHT+1] = {"C0", "C1", "C2", "C3"};  
-  const char * colTitles[WIDTH+1] = {"R0", "R1", "R2", "R3", "R4", "R5"};
+  const char * rowTitles[HEIGHT+1] = {"R0", "R1", "R2", "R3", "R4", "R5"};  
+  const char * colTitles[WIDTH+1] = {"C0", "C1", "C2", "C3"};
   
   //widths of the boxes and type of boxes
   int widths[WIDTH+1] = {BOX_WIDTH, BOX_WIDTH, BOX_WIDTH, BOX_WIDTH};
@@ -75,7 +73,7 @@ int main(){
   initCDKColor();
 
   //create the CDK matrix
-  matrix = newCDKMatrix(screen, CENTER, CENTER, WIDTH, HEIGHT, WIDTH, HEIGHT, NAME, (char**) colTitles,(char**) rowTitles, widths, types, 1,1, ' ', ROW, true, true, false);
+  matrix = newCDKMatrix(screen, CENTER, CENTER, HEIGHT, WIDTH, HEIGHT, WIDTH, NAME, (char**) rowTitles,(char**) colTitles, widths, types, 1,1, ' ', ROW, true, true, false);
 
   //check if matrix was created properly
   if(matrix == NULL){
@@ -134,7 +132,7 @@ int main(){
   int count = 0;
 
   //read the next struct from the binary file and make sure it does not pass the fourth record
-  while(fread(&record, sizeof(BinaryFileRecord), 1, file) && count < 4){
+  while(fread(&record, sizeof(BinaryFileRecord), 1, file) && count < 3){
     
     //turn the string length field in record into a string, append it to the head string objext and add it to the CDK matrix
     snprintf(buffer, maxRecordLength, "%u", record.strlength);
@@ -155,21 +153,8 @@ int main(){
   drawCDKMatrix(matrix,true);
 
 
+  char x;
+  cin >> x;
 
-  initscr();
-  cbreak();
-  noecho();
-  keypad(stdscr, true);
-  nodelay(stdscr, true);
-  while (1){
-    drawCDKMatrix(matrix,true);
-    if(getch() != ERR){
-      endwin();
-      endCDK();
-      return 0;
-      }
-   
-  }
-  sleep(10);
   endCDK();
 }
