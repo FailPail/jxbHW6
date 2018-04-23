@@ -152,9 +152,10 @@ int main(){
   //draw the final CDK matrix
   drawCDKMatrix(matrix,true);
 
-
+  //wait for input and close when input is recieved
   char x;
   cin >> x;
 
+  //end cdk and terminate
   endCDK();
 }
