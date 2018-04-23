@@ -132,7 +132,7 @@ int main(){
   int count = 0;
 
   //read the next struct from the binary file and make sure it does not pass the fourth record
-  while(fread(&record, sizeof(BinaryFileRecord), 1, file) && count < 4){
+  while(fread(&record, sizeof(BinaryFileRecord), 1, file) || count < (int) header.numRecords){
     
     //turn the string length field in record into a string, append it to the head string objext and add it to the CDK matrix
     snprintf(buffer, maxRecordLength, "%u", record.strlength);
